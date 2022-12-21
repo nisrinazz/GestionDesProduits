@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Chercher";
+}
+
+<h2>Chercher</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <input type="text" placeholder="search" name="q" />
+    <input type="submit" />
+}

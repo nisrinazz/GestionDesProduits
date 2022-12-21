@@ -1,0 +1,49 @@
+﻿@model List<Devoir.Models.Produit>
+ 
+@{
+    ViewBag.Title = "ListeProduit";
+}
+
+<h2>ListeProduit</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Type</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Date d'Ajout</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td>   @Html.DisplayFor(modelItem => item.id) </td>
+                <td>   @Html.DisplayFor(modelItem => item.type) </td>
+                <td>   @Html.DisplayFor(modelItem => item.prix) </td>
+                <td>   @Html.DisplayFor(modelItem => item.nom) </td>
+                <td>   @Html.DisplayFor(modelItem => item.qstock) </td>
+                <td>    @String.Format("{0:dd.MM.yyyy}", item.dateAjout) </td>
+                @if (Convert.ToString(@Session["role"]) == "ADMIN")
+                {
+                    <td>    @Html.ActionLink("modifier", "Modifier", "Produit", new { id = item.id }, null) </td>
+                    <td>   @Html.ActionLink("detail", "Detail", "Produit", new { id = item.id }, null) </td>
+                    <td>   @Html.ActionLink("supprimer", "Supprimer", "Produit", new { id = item.id }, null) </td>
+                }
+
+
+            </tr>
+        }
+    </tbody>
+
+
+</table>
