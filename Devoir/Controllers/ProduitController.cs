@@ -22,15 +22,14 @@ namespace Devoir.Controllers
         public ActionResult AjouterProduit(Produit p)
         {
             if (ModelState.IsValid)
-            {
+            {  
                 p.nom = Request.Form["nom"];
                 p.type = Request.Form["type"];
                 p.prix = Convert.ToDecimal(Request.Form["prix"]);
                 p.qstock = Convert.ToInt32(Request.Form["qstock"]);
-                p.dateAjout = Convert.ToDateTime(Request.Form["dateAjout"]);
                 Produits.produits.Add(p);
                 return RedirectToAction("ListeProduit", "Produit");
-                ViewData["message"] = "Ajouté avec succès !";
+
             }
             return View();
         }
